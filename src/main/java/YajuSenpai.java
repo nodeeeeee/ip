@@ -12,7 +12,7 @@ public class YajuSenpai {
         greetings.Print();
 
         while (true) {
-//            try {
+            try {
                 String input = scanner.nextLine();
                 String[] input_words = input.split(" ", 2);
                 if (input.equals("bye")) {
@@ -21,34 +21,41 @@ public class YajuSenpai {
                 } else if (input.equals("list")) {
                     list();
                 } else if (input_words[0].equals("mark")) {
-                    int index = Integer.parseInt(input_words[1]);
-                    mark(index);
+                    try {
+                        int index = Integer.parseInt(input_words[1]);
+                        mark(index);
+                    } catch (NumberFormatException e){
+                        throw new DukeException("あのさぁ, should follow an integer");
+                    }
                 } else if (input_words[0].equals("unmark")) {
-                    int index = Integer.parseInt(input_words[1]);
-                    unmark(index);
+                    try {
+                        int index = Integer.parseInt(input_words[1]);
+                        unmark(index);
+                    } catch (NumberFormatException e){
+                        throw new DukeException("あのさぁ, should follow an integer");
+                    }
                 } else if (input_words[0].equals("todo")) {
-//                    if (input_words.length == 1) {
-//                        throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
-//                    }
+                    if (input_words.length == 1) {
+                        throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+                    }
                     add(new TodoTask(input_words[1]));
                 } else if (input_words[0].equals("deadline")) {
-//                    if (input_words.length == 1) {
-//                        throw new DukeException("Yadamoyada!!! The description of a ddl cannot be empty.");
-//                    }
+                    if (input_words.length == 1) {
+                        throw new DukeException("Yadamoyada!!! The description of a ddl cannot be empty.");
+                    }
                     add(new DeadlineTask(input_words[1]));
                 } else if (input_words[0].equals("event")) {
-//                    if (input_words.length == 1) {
-//                        throw new DukeException("Yadamoyada!!! The description of an event cannot be empty.");
-//                    }
+                    if (input_words.length == 1) {
+                        throw new DukeException("Yadamoyada!!! The description of an event cannot be empty.");
+                    }
                     add(new EventTask(input_words[1]));
                 } else {
                     ResponseBlock response = new ResponseBlock("a- mou ikkai ittekure (What is this guy talking about?)");
                     response.Print();
                 }
-//            }
-//            catch (DukeException e){
-//                continue;
-//            }
+            } catch (DukeException e){
+                e.getResponse().Print();
+            }
         }
     }
 
