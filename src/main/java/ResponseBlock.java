@@ -3,7 +3,7 @@ public class ResponseBlock {
         response = str;
     }
     public void Print() {
-        System.out.print(response + "\n____________________________________________________________\n");
+        System.out.print("____________________________________________________________\n" + response + "\n____________________________________________________________\n");
     }
     final private String response;
 }
