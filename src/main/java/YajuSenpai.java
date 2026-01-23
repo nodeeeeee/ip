@@ -13,7 +13,7 @@ public class YajuSenpai {
         ResponseBlock greetings = new ResponseBlock("Hello! I'm Yaju Senpai.\nWhat can I do for you?");
         greetings.Print();
 
-        while (true) {
+        while (scanner.hasNextLine()) {
             try {
                 String input = scanner.nextLine();
                 String[] input_words = input.split(" ", 2);
@@ -64,12 +64,12 @@ public class YajuSenpai {
     public static void add(Task task) {
 
         chatHistory.addTask(task);
-        ResponseBlock response = new ResponseBlock("Got it. I've added this task: \n" + task.getRep() + "\nNow you have " + chatHistory.getChatSize() + " tasks in the list.");
+        ResponseBlock response = new ResponseBlock("Got it. I've added this task:\n" + task.getRep() + "\nNow you have " + chatHistory.getChatSize() + " tasks in the list.");
         response.Print();
     }
 
     public static void list() {
-        ResponseBlock response = new ResponseBlock("Here are the tasks in your list: \n" + chatHistory.getAllTasks());
+        ResponseBlock response = new ResponseBlock("Here are the tasks in your list:\n" + chatHistory.getAllTasks());
         response.Print();
     }
 
@@ -79,13 +79,13 @@ public class YajuSenpai {
 //    }
     public static void mark(int index) {
         chatHistory.mark(index);
-        ResponseBlock response = new ResponseBlock("Nice! I've marked this task as done: \n" + chatHistory.getTask(index));
+        ResponseBlock response = new ResponseBlock("Nice! I've marked this task as done:\n" + chatHistory.getTask(index));
         response.Print();
     }
 
     public static void unmark(int index) {
         chatHistory.unmark(index);
-        ResponseBlock response = new ResponseBlock("OK, I've marked this task as not done yet: \n" + chatHistory.getTask(index));
+        ResponseBlock response = new ResponseBlock("OK, I've marked this task as not done yet:\n" + chatHistory.getTask(index));
         response.Print();
     }
 
