@@ -1,3 +1,5 @@
+import Task.*;
+
 import java.util.Scanner;
 
 public class YajuSenpai {
@@ -10,29 +12,50 @@ public class YajuSenpai {
         greetings.Print();
 
         while (true) {
-            String input = scanner.nextLine();
-            String[] input_words = input.split(" ");
-            if (input.equals("bye")) {
-                exit();
-                break;
-            } else if (input.equals("list")){
-                list();
-            } else if (input_words[0].equals("mark")) {
-                int index = Integer.parseInt(input_words[1]);
-                mark(index);
-            } else if (input_words[0].equals("unmark")) {
-                int index = Integer.parseInt(input_words[1]);
-                unmark(index);
-            }
-            else {
-                add(input);
-            }
+//            try {
+                String input = scanner.nextLine();
+                String[] input_words = input.split(" ", 2);
+                if (input.equals("bye")) {
+                    exit();
+                    break;
+                } else if (input.equals("list")) {
+                    list();
+                } else if (input_words[0].equals("mark")) {
+                    int index = Integer.parseInt(input_words[1]);
+                    mark(index);
+                } else if (input_words[0].equals("unmark")) {
+                    int index = Integer.parseInt(input_words[1]);
+                    unmark(index);
+                } else if (input_words[0].equals("todo")) {
+//                    if (input_words.length == 1) {
+//                        throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+//                    }
+                    add(new TodoTask(input_words[1]));
+                } else if (input_words[0].equals("deadline")) {
+//                    if (input_words.length == 1) {
+//                        throw new DukeException("Yadamoyada!!! The description of a ddl cannot be empty.");
+//                    }
+                    add(new DeadlineTask(input_words[1]));
+                } else if (input_words[0].equals("event")) {
+//                    if (input_words.length == 1) {
+//                        throw new DukeException("Yadamoyada!!! The description of an event cannot be empty.");
+//                    }
+                    add(new EventTask(input_words[1]));
+                } else {
+                    ResponseBlock response = new ResponseBlock("a- mou ikkai ittekure (What is this guy talking about?)");
+                    response.Print();
+                }
+//            }
+//            catch (DukeException e){
+//                continue;
+//            }
         }
     }
 
-    public static void add(String input) {
-        chatHistory.addTask(input);
-        ResponseBlock response = new ResponseBlock("added: " + input);
+    public static void add(Task task) {
+
+        chatHistory.addTask(task);
+        ResponseBlock response = new ResponseBlock("Got it. I've added this task: \n" + task.getRep() + "\nNow you have " + chatHistory.getChatSize() + " tasks in the list.");
         response.Print();
     }
 

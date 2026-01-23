@@ -1,4 +1,6 @@
-public class Task {
+package Task;
+
+public abstract class Task {
 
     public Task(String str) {
         taskName = str;
@@ -21,8 +23,11 @@ public class Task {
         return taskName;
     }
 
+    public abstract String getRep();
+
 
 
     final private String taskName;
     private boolean isDone;
 }
+

@@ -1,3 +1,5 @@
+import Task.Task;
+
 public class Chat {
     public Chat() {
         tasks = new Task[105];
@@ -5,13 +7,13 @@ public class Chat {
 
     }
 
-    public void addTask(String taskName) {
-        tasks[taskCount] = new Task(taskName);
+    public void addTask(Task task) {
+        tasks[taskCount] = task;
         taskCount++;
     }
 
     public String getTask(int index) {
-        return "[" + (tasks[index].getStatus()) + "]" + tasks[index].getTaskName();
+        return tasks[index].getRep();
     }
 
     public void mark(int index) {
@@ -21,15 +23,15 @@ public class Chat {
     public void unmark(int index) {
         tasks[index].unmark();
     }
-//
-//    public int getChatSize() {
-//        return chatCount;
-//    }
+
+    public int getChatSize() {
+        return taskCount - 1;
+    }
 
     public String getAllTasks() {
         StringBuilder ret = new StringBuilder();
         for (int i = 1; i < taskCount; i++) {
-            ret.append(i).append(". [").append(tasks[i].getStatus()).append("]").append(tasks[i].getTaskName());
+            ret.append(i).append(". ").append(tasks[i].getRep());
             if (i != taskCount - 1){
                 ret.append("\n");
             }
