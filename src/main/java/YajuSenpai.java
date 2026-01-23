@@ -1,3 +1,5 @@
+import ResponseBlock.ResponseBlock;
+import SenpaiException.SenpaiException;
 import Task.*;
 
 import java.util.Scanner;
@@ -25,35 +27,35 @@ public class YajuSenpai {
                         int index = Integer.parseInt(input_words[1]);
                         mark(index);
                     } catch (NumberFormatException e){
-                        throw new DukeException("あのさぁ, should follow an integer");
+                        throw new SenpaiException("あのさぁ, should follow an integer");
                     }
                 } else if (input_words[0].equals("unmark")) {
                     try {
                         int index = Integer.parseInt(input_words[1]);
                         unmark(index);
                     } catch (NumberFormatException e){
-                        throw new DukeException("あのさぁ, should follow an integer");
+                        throw new SenpaiException("あのさぁ, should follow an integer");
                     }
                 } else if (input_words[0].equals("todo")) {
                     if (input_words.length == 1) {
-                        throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+                        throw new SenpaiException("OOPS!!! The description of a todo cannot be empty.");
                     }
                     add(new TodoTask(input_words[1]));
                 } else if (input_words[0].equals("deadline")) {
                     if (input_words.length == 1) {
-                        throw new DukeException("Yadamoyada!!! The description of a ddl cannot be empty.");
+                        throw new SenpaiException("Yadamoyada!!! The description of a ddl cannot be empty.");
                     }
                     add(new DeadlineTask(input_words[1]));
                 } else if (input_words[0].equals("event")) {
                     if (input_words.length == 1) {
-                        throw new DukeException("Yadamoyada!!! The description of an event cannot be empty.");
+                        throw new SenpaiException("Yadamoyada!!! The description of an event cannot be empty.");
                     }
                     add(new EventTask(input_words[1]));
                 } else {
                     ResponseBlock response = new ResponseBlock("a- mou ikkai ittekure (What is this guy talking about?)");
                     response.Print();
                 }
-            } catch (DukeException e){
+            } catch (SenpaiException e){
                 e.getResponse().Print();
             }
         }
@@ -72,7 +74,7 @@ public class YajuSenpai {
     }
 
 //    public static void echo(String input) {
-//        ResponseBlock echo_response = new ResponseBlock(input);
+//        ResponseBlock.ResponseBlock echo_response = new ResponseBlock.ResponseBlock(input);
 //        echo_response.Print();
 //    }
     public static void mark(int index) {

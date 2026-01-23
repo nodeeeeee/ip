@@ -1,5 +1,9 @@
-public class DukeException extends RuntimeException{
-    public DukeException(String message) {
+package SenpaiException;
+
+import ResponseBlock.ResponseBlock;
+
+public class SenpaiException extends RuntimeException{
+    public SenpaiException(String message) {
         super(message);
         response = new ResponseBlock(message);
     }

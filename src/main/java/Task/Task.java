@@ -1,5 +1,4 @@
 package Task;
-
 public abstract class Task {
 
     public Task(String str) {

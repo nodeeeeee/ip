@@ -1,44 +1,42 @@
 import Task.Task;
 
+import java.util.ArrayList;
+
 public class Chat {
     public Chat() {
-        tasks = new Task[105];
-        taskCount = 1;
-
+        tasks = new ArrayList<>();
     }
 
     public void addTask(Task task) {
-        tasks[taskCount] = task;
-        taskCount++;
+        tasks.add(task);
     }
 
     public String getTask(int index) {
-        return tasks[index].getRep();
+        return tasks.get(index - 1).getRep();
     }
 
     public void mark(int index) {
-        tasks[index].mark();
+        tasks.get(index - 1).mark();
     }
 
     public void unmark(int index) {
-        tasks[index].unmark();
+        tasks.get(index - 1).unmark();
     }
 
     public int getChatSize() {
-        return taskCount - 1;
+        return tasks.size();
     }
 
     public String getAllTasks() {
         StringBuilder ret = new StringBuilder();
-        for (int i = 1; i < taskCount; i++) {
-            ret.append(i).append(". ").append(tasks[i].getRep());
-            if (i != taskCount - 1){
+        for (int i = 1; i <= tasks.size(); i++) {
+            ret.append(i).append(". ").append(tasks.get(i - 1).getRep());
+            if (i != tasks.size()){
                 ret.append("\n");
             }
         }
         return ret.toString();
     }
 
-    private int taskCount;
-    private static Task[] tasks ;
+    private static ArrayList<Task> tasks ;
 }

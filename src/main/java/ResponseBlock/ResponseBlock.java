@@ -1,3 +1,5 @@
+package ResponseBlock;
+
 public class ResponseBlock {
     public ResponseBlock(String str) {
         response = str;
