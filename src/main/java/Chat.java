@@ -11,6 +11,10 @@ public class Chat {
         tasks.add(task);
     }
 
+    public void deleteTask(int idx) {
+        tasks.remove(idx - 1);
+    }
+
     public String getTask(int index) {
         return tasks.get(index - 1).getRep();
     }
@@ -37,6 +41,18 @@ public class Chat {
         }
         return ret.toString();
     }
+
+    public String formatSave() {
+        StringBuilder ret = new StringBuilder();
+        for (int i = 1; i <= tasks.size(); i++) {
+            ret.append(tasks.get(i - 1).getRep());
+            if (i != tasks.size()){
+                ret.append("\n");
+            }
+        }
+        return ret.toString();
+    }
+
 
     private static ArrayList<Task> tasks ;
 }

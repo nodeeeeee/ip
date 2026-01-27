@@ -15,7 +15,7 @@ public abstract class Task {
     }
 
     public String getStatus() {
-        return isDone ? "X" : " ";
+        return isDone ? "1" : "0";
     }
 
     public String getTaskName() {

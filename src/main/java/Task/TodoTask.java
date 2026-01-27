@@ -6,6 +6,6 @@ public class TodoTask extends Task{
     }
     @Override
     public String getRep() {
-        return "[T]" + "[" + getStatus() + "] " + getTaskName();
+        return "T | " + getStatus() + " | " + getTaskName();
     }
 }
