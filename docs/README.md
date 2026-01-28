@@ -1,4 +1,4 @@
-# YajuSenpai User Guide
+# duke.YajuSenpai User Guide
 
 // Update the title above to match the actual product name
 

@@ -1,17 +1,17 @@
-package Task;
+package duke.Task;
 
-import SenpaiException.SenpaiException;
+import duke.SenpaiException.SenpaiException;
+import duke.Task.Task;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class DeadlineTask extends Task {
-    public DeadlineTask(String taskDescription) throws SenpaiException{
+    public DeadlineTask(String taskDescription) throws duke.SenpaiException.SenpaiException {
         super(taskDescription.split(" /by ", 2)[0]);
         if (taskDescription.split(" /by ", 2).length == 1) {
-            throw new SenpaiException("Mulimomuli!!! The due of a ddl cannot be empty.");
+            throw new duke.SenpaiException.SenpaiException("Mulimomuli!!! The due of a ddl cannot be empty.");
         }
         String due_str = taskDescription.split(" /by ", 2)[1];
 

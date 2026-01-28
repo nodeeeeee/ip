@@ -1,4 +1,4 @@
-package ResponseBlock;
+package duke.ResponseBlock;
 
 public class ResponseBlock {
     public ResponseBlock(String str) {

@@ -1,8 +1,6 @@
-import ResponseBlock.ResponseBlock;
-import SenpaiException.SenpaiException;
-import Task.DeadlineTask;
-import Task.EventTask;
-import Task.TodoTask;
+package duke;
+
+import duke.SenpaiException.SenpaiException;
 
 public class Parser {
     static Command parse(String input) {

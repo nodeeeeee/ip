@@ -1,6 +1,6 @@
-package SenpaiException;
+package duke.SenpaiException;
 
-import ResponseBlock.ResponseBlock;
+import duke.ResponseBlock.ResponseBlock;
 
 public class SenpaiException extends RuntimeException{
     public SenpaiException(String message) {

@@ -1,4 +1,6 @@
-import ResponseBlock.ResponseBlock;
+package duke;
+
+import duke.ResponseBlock.ResponseBlock;
 
 public class Ui {
     public Ui() {

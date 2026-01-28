@@ -1,18 +1,19 @@
-package Task;
+package duke.Task;
 
-import SenpaiException.SenpaiException;
+import duke.SenpaiException.SenpaiException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 
-public class EventTask extends Task {
-    public EventTask(String taskDescription) throws SenpaiException {
+public class EventTask extends duke.Task.Task {
+    public EventTask(String taskDescription) throws duke.SenpaiException.SenpaiException {
         super(taskDescription.split(" /from ", 2)[0]);
         if (taskDescription.split(" /from ", 2).length == 1) {
             throw new SenpaiException("Mulimomuli!!! The starting time of a ddl cannot be empty.");
         } else if (taskDescription.split(" /from ", 2)[1].split(" /to ", 2).length == 1) {
-            throw new SenpaiException("Mulimomuli!!! The end time of a ddl cannot be empty.");
+            throw new duke.SenpaiException.SenpaiException("Mulimomuli!!! The end time of a ddl cannot be empty.");
         }
         String from_str = taskDescription.split(" /from ", 2)[1].split(" /to ", 2)[0];
         String to_str = taskDescription.split(" /from ", 2)[1].split(" /to ", 2)[1];
@@ -30,7 +31,7 @@ public class EventTask extends Task {
                 to = LocalDate.parse(to_str);
             }
         } catch(DateTimeParseException e) {
-            throw new SenpaiException("date time format should be yyyy-mm-dd");
+            throw new duke.SenpaiException.SenpaiException("date time format should be yyyy-mm-dd");
         }
 
     }

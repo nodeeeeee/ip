@@ -1,4 +1,6 @@
-import SenpaiException.SenpaiException;
+package duke;
+
+import duke.SenpaiException.SenpaiException;
 
 import java.io.File;
 import java.io.FileNotFoundException;

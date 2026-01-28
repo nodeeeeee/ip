@@ -1,8 +1,7 @@
-import ResponseBlock.ResponseBlock;
-import SenpaiException.SenpaiException;
-import Task.*;
+package duke;
 
-import java.io.IOException;
+import duke.SenpaiException.SenpaiException;
+
 import java.util.Scanner;
 
 public class YajuSenpai {
@@ -53,33 +52,33 @@ public class YajuSenpai {
 //    public static void delete(int idx) {
 //        String removed_task = tasks.getTask(idx);
 //        tasks.deleteTask(idx);
-//        ResponseBlock response = new ResponseBlock("Noted. I've removed this task:\n" + removed_task + "\nNow you have " + tasks.getChatSize() + " tasks in the list.");
+//        duke.ResponseBlock response = new duke.ResponseBlock("Noted. I've removed this task:\n" + removed_task + "\nNow you have " + tasks.getChatSize() + " tasks in the list.");
 //        response.Print();
 //    }
 //
 //    public static void list() {
-//        ResponseBlock response = new ResponseBlock("Here are the tasks in your list:\n" + tasks.getAllTasks());
+//        duke.ResponseBlock response = new duke.ResponseBlock("Here are the tasks in your list:\n" + tasks.getAllTasks());
 //        response.Print();
 //    }
 //
 ////    public static void echo(String input) {
-////        ResponseBlock.ResponseBlock echo_response = new ResponseBlock.ResponseBlock(input);
+////        duke.ResponseBlock.duke.ResponseBlock echo_response = new duke.ResponseBlock.duke.ResponseBlock(input);
 ////        echo_response.Print();
 ////    }
 //    public static void mark(int index) {
 //        tasks.mark(index);
-//        ResponseBlock response = new ResponseBlock("Nice! I've marked this task as done:\n" + tasks.getTask(index));
+//        duke.ResponseBlock response = new duke.ResponseBlock("Nice! I've marked this task as done:\n" + tasks.getTask(index));
 //        response.Print();
 //    }
 //
 //    public static void unmark(int index) {
 //        tasks.unmark(index);
-//        ResponseBlock response = new ResponseBlock("OK, I've marked this task as not done yet:\n" + tasks.getTask(index));
+//        duke.ResponseBlock response = new duke.ResponseBlock("OK, I've marked this task as not done yet:\n" + tasks.getTask(index));
 //        response.Print();
 //    }
 //
 //    public static void exit() {
-//        ResponseBlock exit = new ResponseBlock("Bye. Hope to see you again soon!");
+//        duke.ResponseBlock exit = new duke.ResponseBlock("Bye. Hope to see you again soon!");
 //        exit.Print();
 //    }
 

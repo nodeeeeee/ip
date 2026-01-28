@@ -1,6 +1,6 @@
-package Task;
+package duke.Task;
 
-public class TodoTask extends Task{
+public class TodoTask extends duke.Task.Task {
     public TodoTask(String taskDescription) throws RuntimeException {
         super(taskDescription);
     }

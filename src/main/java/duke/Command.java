@@ -1,8 +1,8 @@
-import Task.DeadlineTask;
-import Task.EventTask;
-import Task.TodoTask;
+package duke;
 
-import java.time.LocalDate;
+import duke.Task.DeadlineTask;
+import duke.Task.EventTask;
+import duke.Task.TodoTask;
 
 public class Command {
     public enum Type {

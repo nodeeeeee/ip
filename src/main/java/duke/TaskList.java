@@ -1,13 +1,12 @@
-import ResponseBlock.ResponseBlock;
-import SenpaiException.SenpaiException;
-import Task.Task;
-import java.io.File;
-import java.io.FileNotFoundException;
+package duke;
+
+import duke.ResponseBlock.ResponseBlock;
+import duke.Task.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.time.format.DateTimeParseException;
 import java.io.FileWriter;
-import Task.*;
 
 
 public class TaskList {
