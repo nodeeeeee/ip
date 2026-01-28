@@ -16,17 +16,21 @@ public class EventTask extends Task {
         }
         String from_str = taskDescription.split(" /from ", 2)[1].split(" /to ", 2)[0];
         String to_str = taskDescription.split(" /from ", 2)[1].split(" /to ", 2)[1];
-        if (!from_str.contains("-")) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-            from = LocalDate.parse(from_str, formatter);
-        } else {
-            from = LocalDate.parse(from_str);
-        }
-        if (!from_str.contains("-")) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-            to = LocalDate.parse(to_str, formatter);
-        } else {
-            to = LocalDate.parse(to_str);
+        try {
+            if (!from_str.contains("-")) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+                from = LocalDate.parse(from_str, formatter);
+            } else {
+                from = LocalDate.parse(from_str);
+            }
+            if (!from_str.contains("-")) {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+                to = LocalDate.parse(to_str, formatter);
+            } else {
+                to = LocalDate.parse(to_str);
+            }
+        } catch(DateTimeParseException e) {
+            throw new SenpaiException("date time format should be yyyy-mm-dd");
         }
 
     }

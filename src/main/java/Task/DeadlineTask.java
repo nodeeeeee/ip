@@ -24,8 +24,7 @@ public class DeadlineTask extends Task {
 
             }
         } catch (DateTimeParseException e) {
-            System.out.println("date time format should be yyyy-mm-dd");
-            return ;
+            throw new SenpaiException("date time format should be yyyy-mm-dd");
         }
     }
 
