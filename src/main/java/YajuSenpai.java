@@ -5,9 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
-
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class YajuSenpai {
 
@@ -97,22 +97,27 @@ public class YajuSenpai {
     }
 
     private static void loadSavedList() {
+        Scanner s;
+        File f;
         try {
-            File f = new File("savedTasks.txt"); // create a File for the given file path
-            Scanner s = new Scanner(f); // create a Scanner using the File as the source
-            int idx = 1;
-            while (s.hasNext()) {
-                String currTask = s.nextLine();
-                String[] taskComponents = currTask.split(" \\| ", 4);
-
+            f = new File("savedTasks.txt"); // create a File for the given file path
+            s = new Scanner(f); // create a Scanner using the File as the source
+        } catch (FileNotFoundException e) {
+            return ;
+        }
+        int idx = 1;
+        while (s.hasNext()) {
+            String currTask = s.nextLine();
+            String[] taskComponents = currTask.split(" \\| ", 4);
+            try {
                 if (taskComponents[0].equals("T")) {
                     addWithoutResponse(new TodoTask(taskComponents[2]));
                 } else if (taskComponents[0].equals("D")) {
-//                    System.out.println(taskComponents[0]);
-//                    System.out.println(taskComponents[1]);
-//                    System.out.println(taskComponents[2]);
-//                    System.out.println(taskComponents[3]);
-                    System.out.println(taskComponents[2] + " " + taskComponents[3]);
+    //                    System.out.println(taskComponents[0]);
+    //                    System.out.println(taskComponents[1]);
+    //                    System.out.println(taskComponents[2]);
+    //                    System.out.println(taskComponents[3]);
+//                    System.out.println(taskComponents[2] + " " + taskComponents[3]);
                     addWithoutResponse(new DeadlineTask(taskComponents[2] + " " + taskComponents[3]));
                 } else if (taskComponents[0].equals("E")) {
                     addWithoutResponse(new EventTask(taskComponents[2] + " " + taskComponents[3]));
@@ -121,9 +126,9 @@ public class YajuSenpai {
                     mark(idx);
                 }
                 idx++;
+            } catch (DateTimeParseException e) {
+                continue;
             }
-        } catch (FileNotFoundException e) {
-            return ;
         }
     }
 
