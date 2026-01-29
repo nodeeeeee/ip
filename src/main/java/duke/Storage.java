@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Handle loading tasks from storage file.
+ * Handle loading tasks from the storage file.
  */
 public class Storage {
     /**
      * Create a storage helper.
      *
-     * @param filePath Path to the save file.
+     * @param filePath Path to save file.
      */
     public Storage (String filePath) {
         f = new File(filePath);
