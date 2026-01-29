@@ -78,7 +78,10 @@ public class TaskList {
     }
 
     public void deleteTask(int idx) {
+        String task_rep = tasks.get(idx - 1).getRep();
         tasks.remove(idx - 1);
+        ResponseBlock response = new ResponseBlock("Deleted task successfully:\n" + task_rep + "\nNow you have " + getChatSize() +  "tasks in the list.");
+        response.Print();
     }
 
     public String getTask(int index) {
