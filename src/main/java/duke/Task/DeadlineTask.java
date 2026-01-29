@@ -8,6 +8,12 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class DeadlineTask extends Task {
+    /**
+     * Initialization of DealineTask.
+     *
+     * @param taskDescription description string.
+     * @throws duke.SenpaiException.SenpaiException If the input date is invalid.
+     */
     public DeadlineTask(String taskDescription) throws duke.SenpaiException.SenpaiException {
         super(taskDescription.split(" /by ", 2)[0]);
         if (taskDescription.split(" /by ", 2).length == 1) {
@@ -28,6 +34,11 @@ public class DeadlineTask extends Task {
         }
     }
 
+    /**
+     * Return the formatted representation.
+     *
+     * @return Formatted task string.
+     */
     @Override
     public String getRep() {
         return "D | "  + getStatus() + " | " + getTaskName() + " | /by " + due.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));

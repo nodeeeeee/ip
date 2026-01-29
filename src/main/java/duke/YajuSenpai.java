@@ -4,7 +4,15 @@ import duke.SenpaiException.SenpaiException;
 
 import java.util.Scanner;
 
+/**
+ * Main class.
+ */
 public class YajuSenpai {
+    /**
+     * Initialization.
+     *
+     * @param filePath Path to save file.
+     */
     public YajuSenpai(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -16,6 +24,9 @@ public class YajuSenpai {
         }
     }
 
+    /**
+     * Run the main input loop.
+     */
     public void run() {
         Scanner scanner = new Scanner(System.in);
         ui.showWelcome();

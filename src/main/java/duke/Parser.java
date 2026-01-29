@@ -2,7 +2,17 @@ package duke;
 
 import duke.SenpaiException.SenpaiException;
 
+/**
+ * Turns string input into a Command.
+ */
 public class Parser {
+    /**
+     * Parses the input string.
+     *
+     * @param input user input string.
+     * @return Parsed command.
+     * @throws SenpaiException If the input is not valid.
+     */
     static Command parse(String input) {
             String[] input_words = input.split(" ", 2);
             if (input.equals("list")) {

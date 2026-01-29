@@ -7,10 +7,24 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handle loading tasks from storage file.
+ */
 public class Storage {
+    /**
+     * Create a storage helper.
+     *
+     * @param filePath Path to the save file.
+     */
     public Storage (String filePath) {
         f = new File(filePath);
     }
+    /**
+     * Load all saved tasks.
+     *
+     * @return Array of saved task strings.
+     * @throws SenpaiException If the file cannot be found.
+     */
     public String[] load() throws SenpaiException {
         Scanner s = null;
         File f;

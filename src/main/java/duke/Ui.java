@@ -2,6 +2,9 @@ package duke;
 
 import duke.ResponseBlock.ResponseBlock;
 
+/**
+ * Prints messages to the user.
+ */
 public class Ui {
     public Ui() {
 

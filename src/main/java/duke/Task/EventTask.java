@@ -7,7 +7,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 
+
 public class EventTask extends duke.Task.Task {
+    /**
+     * Initialization of EventTask.
+     *
+     * @param taskDescription description string.
+     * @throws duke.SenpaiException.SenpaiException If the input dates are invalid.
+     */
     public EventTask(String taskDescription) throws duke.SenpaiException.SenpaiException {
         super(taskDescription.split(" /from ", 2)[0]);
         if (taskDescription.split(" /from ", 2).length == 1) {
@@ -36,6 +43,11 @@ public class EventTask extends duke.Task.Task {
 
     }
 
+    /**
+     * Return the formatted representation.
+     *
+     * @return Formatted task string.
+     */
     @Override
     public String getRep() {
         return "E | " + getStatus() + " | " + getTaskName() + " | /from " + from.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + " /to " + to.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
