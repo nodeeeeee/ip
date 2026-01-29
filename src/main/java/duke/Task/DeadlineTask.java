@@ -41,7 +41,7 @@ public class DeadlineTask extends Task {
      */
     @Override
     public String getRep() {
-        return "D | "  + getStatus() + " | " + getTaskName() + " | /by " + due.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return "D | " + getStatus() + " | " + getTaskName() + " | /by " + due.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 
     public LocalDate getDue() {

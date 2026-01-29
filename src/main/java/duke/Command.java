@@ -18,21 +18,23 @@ public class Command {
         unmark,
         delete
     }
+
     /**
      * Create a command with text content.
      *
      * @param description Text for the command.
-     * @param type Command type.
+     * @param type        Command type.
      */
     public Command(String description, Type type) {
         this.description = description;
         this.type = type;
     }
+
     /**
      * Create a command that uses 1-based index.
      *
      * @param type Command type.
-     * @param idx 1-based index.
+     * @param idx  1-based index.
      */
     public Command(Type type, int idx) {
         this.type = type;
@@ -46,13 +48,27 @@ public class Command {
      */
     public void execute(TaskList tasks) {
         switch (type) {
-            case E -> {tasks.addWithResponse(new EventTask(description));}
-            case T -> {tasks.addWithResponse(new TodoTask(description));}
-            case D -> {tasks.addWithResponse(new DeadlineTask(description));}
-            case list -> {tasks.list();}
-            case mark -> {tasks.mark(idx);}
-            case unmark -> {tasks.unmark(idx);}
-            case delete -> {tasks.deleteTask(idx);}
+            case E -> {
+                tasks.addWithResponse(new EventTask(description));
+            }
+            case T -> {
+                tasks.addWithResponse(new TodoTask(description));
+            }
+            case D -> {
+                tasks.addWithResponse(new DeadlineTask(description));
+            }
+            case list -> {
+                tasks.list();
+            }
+            case mark -> {
+                tasks.mark(idx);
+            }
+            case unmark -> {
+                tasks.unmark(idx);
+            }
+            case delete -> {
+                tasks.deleteTask(idx);
+            }
         }
         tasks.saveList();
     }

@@ -10,6 +10,7 @@ public class TodoTask extends duke.Task.Task {
     public TodoTask(String taskDescription) throws RuntimeException {
         super(taskDescription);
     }
+
     /**
      * Return the formatted representation.
      *
