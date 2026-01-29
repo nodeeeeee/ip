@@ -33,4 +33,16 @@ public class SenpaiTest {
                 () -> new DeadlineTask("submit report /by 1145/01/04"));
         assertEquals("date time format should be yyyy-mm-dd", ex.getMessage());
     }
+
+    @Test
+    public void findMatchingTasks() {
+        TaskList tasks = new TaskList();
+        tasks.addWithoutResponse(new TodoTask("read book"));
+        tasks.addWithoutResponse(new TodoTask("buy milk"));
+        tasks.addWithoutResponse(new TodoTask("return book"));
+
+        String matches = tasks.getMatchingTasks("book");
+
+        assertEquals("1. T | 0 | read book\n3. T | 0 | return book", matches);
+    }
 }
