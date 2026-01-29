@@ -137,7 +137,7 @@ public class TaskList {
     }
 
     /**
-     * Return how many tasks are in the list.
+     * Returns how many tasks are in the list.
      *
      * @return Number of tasks.
      */
@@ -146,7 +146,7 @@ public class TaskList {
     }
 
     /**
-     * Print the list of tasks.
+     * Prints the list of tasks.
      */
     public void list() {
         ResponseBlock response = new ResponseBlock("Here are the tasks in your list:\n" + getAllTasks());
@@ -154,7 +154,17 @@ public class TaskList {
     }
 
     /**
-     * Get the string of all tasks.
+     * Find tasks that match a keyword and print them.
+     *
+     * @param keyword Keyword to search for.
+     */
+    public void find(String keyword) {
+        ResponseBlock response = new ResponseBlock("Here are the matching tasks in your list:\n" + getMatchingTasks(keyword));
+        response.Print();
+    }
+
+    /**
+     * Gets the string of all tasks.
      *
      * @return String of tasks.
      */
@@ -170,7 +180,29 @@ public class TaskList {
     }
 
     /**
-     * Format tasks to save to file.
+     * Get the string of matched tasks.
+     *
+     * @param keyword Keyword to search for.
+     * @return String of matched tasks.
+     */
+    public String getMatchingTasks(String keyword) {
+        StringBuilder ret = new StringBuilder();
+        boolean first = true;
+        for (int i = 1; i <= tasks.size(); i++) {
+            Task task = tasks.get(i - 1);
+            if (task.getTaskName().contains(keyword)) {
+                if (!first) {
+                    ret.append("\n");
+                }
+                ret.append(i).append(". ").append(task.getRep());
+                first = false;
+            }
+        }
+        return ret.toString();
+    }
+
+    /**
+     * Formats tasks to save to file.
      *
      * @return formatted string.
      */

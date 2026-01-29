@@ -5,13 +5,14 @@ import duke.Task.EventTask;
 import duke.Task.TodoTask;
 
 /**
- * Represent one user action.
+ * Represents one user action.
  */
 public class Command {
     public enum Type {
         E,
         T,
         D,
+        find,
         list,
         bye,
         mark,
@@ -20,7 +21,7 @@ public class Command {
     }
 
     /**
-     * Create a command with text content.
+     * Creates a command with text content.
      *
      * @param description Text for the command.
      * @param type        Command type.
@@ -31,7 +32,7 @@ public class Command {
     }
 
     /**
-     * Create a command that uses 1-based index.
+     * Creates a command that uses 1-based index.
      *
      * @param type Command type.
      * @param idx  1-based index.
@@ -42,7 +43,7 @@ public class Command {
     }
 
     /**
-     * Execute the command on the task list.
+     * Executes the command on the task list.
      *
      * @param tasks Task list to operate on.
      */
@@ -56,6 +57,9 @@ public class Command {
             }
             case D -> {
                 tasks.addWithResponse(new DeadlineTask(description));
+            }
+            case find -> {
+                tasks.find(description);
             }
             case list -> {
                 tasks.list();
@@ -74,7 +78,7 @@ public class Command {
     }
 
     /**
-     * Check if command type is bye.
+     * Checks if command type is bye.
      *
      * @return True if command type is bye.
      */

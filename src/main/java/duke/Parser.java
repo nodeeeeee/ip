@@ -53,6 +53,11 @@ public class Parser {
                 throw new SenpaiException("Yadamoyada!!! The description of an event cannot be empty.");
             }
             return new Command(input_words[1], Command.Type.E);
+        } else if (input_words[0].equals("find")) {
+            if (input_words.length == 1) {
+                throw new SenpaiException("OOPS!!! The keyword for find cannot be empty.");
+            }
+            return new Command(input_words[1], Command.Type.find);
         } else if (input_words[0].equals("bye")) {
             return new Command("bye", Command.Type.bye);
         } else {
