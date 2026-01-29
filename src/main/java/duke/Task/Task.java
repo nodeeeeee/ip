@@ -1,4 +1,5 @@
 package duke.Task;
+
 /**
  * Base class for all tasks.
  */
@@ -42,7 +43,6 @@ public abstract class Task {
     }
 
     public abstract String getRep();
-
 
 
     final private String taskName;

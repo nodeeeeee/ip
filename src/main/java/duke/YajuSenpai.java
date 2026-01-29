@@ -47,17 +47,9 @@ public class YajuSenpai {
     }
 
 
-
     public static void main(String[] args) {
         new YajuSenpai("data/tasks.txt").run();
     }
-
-
-
-
-
-
-
 
 
 //    public static void delete(int idx) {
@@ -72,10 +64,10 @@ public class YajuSenpai {
 //        response.Print();
 //    }
 //
-////    public static void echo(String input) {
-////        duke.ResponseBlock.duke.ResponseBlock echo_response = new duke.ResponseBlock.duke.ResponseBlock(input);
-////        echo_response.Print();
-////    }
+    /// /    public static void echo(String input) {
+    /// /        duke.ResponseBlock.duke.ResponseBlock echo_response = new duke.ResponseBlock.duke.ResponseBlock(input);
+    /// /        echo_response.Print();
+    /// /    }
 //    public static void mark(int index) {
 //        tasks.mark(index);
 //        duke.ResponseBlock response = new duke.ResponseBlock("Nice! I've marked this task as done:\n" + tasks.getTask(index));

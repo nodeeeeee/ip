@@ -60,10 +60,6 @@ public class TaskList {
     }
 
 
-
-
-
-
     /**
      * Adds a task and prints the response.
      *
@@ -108,7 +104,7 @@ public class TaskList {
     public void deleteTask(int idx) {
         String task_rep = tasks.get(idx - 1).getRep();
         tasks.remove(idx - 1);
-        ResponseBlock response = new ResponseBlock("Deleted task successfully:\n" + task_rep + "\nNow you have " + getChatSize() +  "tasks in the list.");
+        ResponseBlock response = new ResponseBlock("Deleted task successfully:\n" + task_rep + "\nNow you have " + getChatSize() + "tasks in the list.");
         response.Print();
     }
 
@@ -166,7 +162,7 @@ public class TaskList {
         StringBuilder ret = new StringBuilder();
         for (int i = 1; i <= tasks.size(); i++) {
             ret.append(i).append(". ").append(tasks.get(i - 1).getRep());
-            if (i != tasks.size()){
+            if (i != tasks.size()) {
                 ret.append("\n");
             }
         }
@@ -182,7 +178,7 @@ public class TaskList {
         StringBuilder ret = new StringBuilder();
         for (int i = 1; i <= tasks.size(); i++) {
             ret.append(tasks.get(i - 1).getRep());
-            if (i != tasks.size()){
+            if (i != tasks.size()) {
                 ret.append("\n");
             }
         }
@@ -190,5 +186,5 @@ public class TaskList {
     }
 
 
-    private static ArrayList<Task> tasks ;
+    private static ArrayList<Task> tasks;
 }

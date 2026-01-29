@@ -16,9 +16,10 @@ public class Storage {
      *
      * @param filePath Path to save file.
      */
-    public Storage (String filePath) {
+    public Storage(String filePath) {
         f = new File(filePath);
     }
+
     /**
      * Load all saved tasks.
      *
@@ -37,8 +38,7 @@ public class Storage {
             }
             String[] ret = lines.toArray(new String[0]);
             return ret;
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             throw new SenpaiException("File Not Found");
         } finally {
             if (s != null) {
@@ -46,5 +46,6 @@ public class Storage {
             }
         }
     }
+
     final private File f;
 }

@@ -2,7 +2,7 @@ package duke.SenpaiException;
 
 import duke.ResponseBlock.ResponseBlock;
 
-public class SenpaiException extends RuntimeException{
+public class SenpaiException extends RuntimeException {
     /**
      * Create the exception.
      *
@@ -12,6 +12,7 @@ public class SenpaiException extends RuntimeException{
         super(message);
         response = new ResponseBlock(message);
     }
+
     /**
      * Return the response for this exception.
      *
@@ -20,5 +21,6 @@ public class SenpaiException extends RuntimeException{
     public ResponseBlock getResponse() {
         return response;
     }
+
     private final ResponseBlock response;
 }

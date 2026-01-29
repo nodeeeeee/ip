@@ -7,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 
-
 public class EventTask extends duke.Task.Task {
     /**
      * Initialization of EventTask.
@@ -37,7 +36,7 @@ public class EventTask extends duke.Task.Task {
             } else {
                 to = LocalDate.parse(to_str);
             }
-        } catch(DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             throw new duke.SenpaiException.SenpaiException("date time format should be yyyy-mm-dd");
         }
 
