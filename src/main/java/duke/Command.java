@@ -74,7 +74,8 @@ public class Command {
             response = tasks.addWithResponse(new DeadlineTask(description));
         }
         case find -> {
-            response = tasks.find(description);
+            String[] keywords = description.split(" ");
+            response = tasks.find(keywords);
         }
         case list -> {
             response = tasks.list();

@@ -170,10 +170,11 @@ public class TaskList {
      *
      * @param keyword Keyword to search for.
      */
-    public String find(String keyword) {
+    public String find(String ...keyword) {
 //        ResponseBlock response = new ResponseBlock("Here are the matching tasks in your list:\n"
 //                + getMatchingTasks(keyword));
 //        response.print();
+
         return "Here are the matching tasks in your list:\n"
                 + getMatchingTasks(keyword);
     }
@@ -200,17 +201,23 @@ public class TaskList {
      * @param keyword Keyword to search for.
      * @return String of matched tasks.
      */
-    public String getMatchingTasks(String keyword) {
+    public String getMatchingTasks(String ...keywords) {
+        if (keywords == null || keywords.length == 0) {
+            return "";
+        }
         StringBuilder ret = new StringBuilder();
         boolean first = true;
         for (int i = 1; i <= tasks.size(); i++) {
             Task task = tasks.get(i - 1);
-            if (task.getTaskName().contains(keyword)) {
-                if (!first) {
-                    ret.append("\n");
+            for (String keyword : keywords) {
+                if (task.getTaskName().contains(keyword)) {
+                    if (!first) {
+                        ret.append("\n");
+                    }
+                    ret.append(i).append(". ").append(task.getRep());
+                    first = false;
+                    break;
                 }
-                ret.append(i).append(". ").append(task.getRep());
-                first = false;
             }
         }
         return ret.toString();
