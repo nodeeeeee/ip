@@ -21,7 +21,8 @@ public class Command {
         bye,
         mark,
         unmark,
-        delete
+        delete,
+        err
     }
 
     private String description;
@@ -37,6 +38,10 @@ public class Command {
     public Command(String description, Type type) {
         this.description = description;
         this.type = type;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     /**
@@ -56,35 +61,39 @@ public class Command {
      * @param tasks Task list to operate on.
      * @throws SenpaiException If an invalid command is encountered.
      */
-    public void execute(TaskList tasks) throws SenpaiException {
+    public String execute(TaskList tasks) throws SenpaiException {
+        String response;
         switch (type) {
         case E -> {
-            tasks.addWithResponse(new EventTask(description));
+            response = tasks.addWithResponse(new EventTask(description));
         }
         case T -> {
-            tasks.addWithResponse(new TodoTask(description));
+            response = tasks.addWithResponse(new TodoTask(description));
         }
         case D -> {
-            tasks.addWithResponse(new DeadlineTask(description));
+            response = tasks.addWithResponse(new DeadlineTask(description));
         }
         case find -> {
-            tasks.find(description);
+            response = tasks.find(description);
         }
         case list -> {
-            tasks.list();
+            response = tasks.list();
         }
         case mark -> {
-            tasks.mark(idx);
+            response = tasks.mark(idx);
         }
         case unmark -> {
-            tasks.unmark(idx);
+            response = tasks.unmark(idx);
         }
         case delete -> {
-            tasks.deleteTask(idx);
+            response = tasks.deleteTask(idx);
         }
-        default -> throw new SenpaiException("Unknown command type.");
+        default -> {
+            throw new SenpaiException("Unknown command type.");
+        }
         }
         tasks.saveList();
+        return response;
     }
 
     /**

@@ -68,11 +68,13 @@ public class TaskList {
      *
      * @param task Task to add.
      */
-    public void addWithResponse(Task task) {
+    public String addWithResponse(Task task) {
         addTask(task);
-        ResponseBlock response = new ResponseBlock("Got it. I've added this task:\n"
-                + task.getRep() + "\nNow you have " + getChatSize() + " tasks in the list.");
-        response.print();
+//        ResponseBlock response = new ResponseBlock("Got it. I've added this task:\n"
+//                + task.getRep() + "\nNow you have " + getChatSize() + " tasks in the list.");
+//        response.print();
+        return "Got it. I've added this task:\n"
+                + task.getRep() + "\nNow you have " + getChatSize() + " tasks in the list.";
     }
 
     /**
@@ -105,12 +107,14 @@ public class TaskList {
      *
      * @param idx 1-based index of task to delete.
      */
-    public void deleteTask(int idx) {
+    public String deleteTask(int idx) {
         String taskRep = tasks.get(idx - 1).getRep();
         tasks.remove(idx - 1);
-        ResponseBlock response = new ResponseBlock("Deleted task successfully:\n"
-                + taskRep + "\nNow you have " + getChatSize() + " tasks in the list.");
-        response.print();
+//        ResponseBlock response = new ResponseBlock("Deleted task successfully:\n"
+//                + taskRep + "\nNow you have " + getChatSize() + " tasks in the list.");
+//        response.print();
+        return "Deleted task successfully:\n"
+                + taskRep + "\nNow you have " + getChatSize() + " tasks in the list.";
     }
 
     /**
@@ -128,8 +132,9 @@ public class TaskList {
      *
      * @param index 1-based index of task to mark.
      */
-    public void mark(int index) {
+    public String mark(int index) {
         tasks.get(index - 1).mark();
+        return "marked";
     }
 
     /**
@@ -137,8 +142,9 @@ public class TaskList {
      *
      * @param index 1-based index of task to unmark.
      */
-    public void unmark(int index) {
+    public String unmark(int index) {
         tasks.get(index - 1).unmark();
+        return "unmarked";
     }
 
     /**
@@ -153,9 +159,10 @@ public class TaskList {
     /**
      * Prints the list of tasks.
      */
-    public void list() {
-        ResponseBlock response = new ResponseBlock("Here are the tasks in your list:\n" + getAllTasks());
-        response.print();
+    public String list() {
+//        ResponseBlock response = new ResponseBlock("Here are the tasks in your list:\n" + getAllTasks());
+//        response.print();
+        return "Here are the tasks in your list:\n" + getAllTasks();
     }
 
     /**
@@ -163,10 +170,12 @@ public class TaskList {
      *
      * @param keyword Keyword to search for.
      */
-    public void find(String keyword) {
-        ResponseBlock response = new ResponseBlock("Here are the matching tasks in your list:\n"
-                + getMatchingTasks(keyword));
-        response.print();
+    public String find(String keyword) {
+//        ResponseBlock response = new ResponseBlock("Here are the matching tasks in your list:\n"
+//                + getMatchingTasks(keyword));
+//        response.print();
+        return "Here are the matching tasks in your list:\n"
+                + getMatchingTasks(keyword);
     }
 
     /**

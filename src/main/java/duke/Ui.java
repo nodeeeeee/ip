@@ -21,8 +21,8 @@ public class Ui {
     /**
      * Prints the loading error message.
      */
-    public void showLoadingError() {
+    public String showLoadingError() {
         ResponseBlock loadingError = new ResponseBlock("Loading Error");
-        loadingError.print();
+        return loadingError.print();
     }
 }
