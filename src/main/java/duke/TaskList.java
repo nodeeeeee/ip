@@ -1,34 +1,37 @@
 package duke;
 
-import duke.ResponseBlock.ResponseBlock;
-import duke.Task.*;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.time.format.DateTimeParseException;
 import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import duke.responseblock.ResponseBlock;
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+import duke.task.Task;
+import duke.task.TodoTask;
 
+/**
+ * Manages the task list and related operations.
+ */
 public class TaskList {
+    private final List<Task> tasks;
+
     /**
      * Loads tasks from saved strings.
      *
-     * @param load_str Array of saved strings.
+     * @param loadStr Array of saved strings.
      */
-    public TaskList(String[] load_str) {
+    public TaskList(String[] loadStr) {
         tasks = new ArrayList<>();
         int idx = 1;
-        for (int i = 0; i < load_str.length; i++) {
-            String[] taskComponents = load_str[i].split(" \\| ", 4);
+        for (int i = 0; i < loadStr.length; i++) {
+            String[] taskComponents = loadStr[i].split(" \\| ", 4);
             try {
                 if (taskComponents[0].equals("T")) {
                     addWithoutResponse(new TodoTask(taskComponents[2]));
                 } else if (taskComponents[0].equals("D")) {
-                    //                    System.out.println(taskComponents[0]);
-                    //                    System.out.println(taskComponents[1]);
-                    //                    System.out.println(taskComponents[2]);
-                    //                    System.out.println(taskComponents[3]);
-//                    System.out.println(taskComponents[2] + " " + taskComponents[3]);
                     addWithoutResponse(new DeadlineTask(taskComponents[2] + " " + taskComponents[3]));
                 } else if (taskComponents[0].equals("E")) {
                     addWithoutResponse(new EventTask(taskComponents[2] + " " + taskComponents[3]));
@@ -67,8 +70,9 @@ public class TaskList {
      */
     public void addWithResponse(Task task) {
         addTask(task);
-        ResponseBlock response = new ResponseBlock("Got it. I've added this task:\n" + task.getRep() + "\nNow you have " + getChatSize() + " tasks in the list.");
-        response.Print();
+        ResponseBlock response = new ResponseBlock("Got it. I've added this task:\n"
+                + task.getRep() + "\nNow you have " + getChatSize() + " tasks in the list.");
+        response.print();
     }
 
     /**
@@ -102,10 +106,11 @@ public class TaskList {
      * @param idx 1-based index of task to delete.
      */
     public void deleteTask(int idx) {
-        String task_rep = tasks.get(idx - 1).getRep();
+        String taskRep = tasks.get(idx - 1).getRep();
         tasks.remove(idx - 1);
-        ResponseBlock response = new ResponseBlock("Deleted task successfully:\n" + task_rep + "\nNow you have " + getChatSize() + "tasks in the list.");
-        response.Print();
+        ResponseBlock response = new ResponseBlock("Deleted task successfully:\n"
+                + taskRep + "\nNow you have " + getChatSize() + " tasks in the list.");
+        response.print();
     }
 
     /**
@@ -150,7 +155,7 @@ public class TaskList {
      */
     public void list() {
         ResponseBlock response = new ResponseBlock("Here are the tasks in your list:\n" + getAllTasks());
-        response.Print();
+        response.print();
     }
 
     /**
@@ -159,8 +164,9 @@ public class TaskList {
      * @param keyword Keyword to search for.
      */
     public void find(String keyword) {
-        ResponseBlock response = new ResponseBlock("Here are the matching tasks in your list:\n" + getMatchingTasks(keyword));
-        response.Print();
+        ResponseBlock response = new ResponseBlock("Here are the matching tasks in your list:\n"
+                + getMatchingTasks(keyword));
+        response.print();
     }
 
     /**
@@ -218,5 +224,4 @@ public class TaskList {
     }
 
 
-    private static ArrayList<Task> tasks;
 }

@@ -1,23 +1,25 @@
 package duke;
 
-import duke.SenpaiException.SenpaiException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.senpaiexception.SenpaiException;
+
 /**
  * Handle loading tasks from the storage file.
  */
 public class Storage {
+    private final File file;
+
     /**
      * Create a storage helper.
      *
      * @param filePath Path to save file.
      */
     public Storage(String filePath) {
-        f = new File(filePath);
+        file = new File(filePath);
     }
 
     /**
@@ -28,11 +30,9 @@ public class Storage {
      */
     public String[] load() throws SenpaiException {
         Scanner s = null;
-        File f;
         ArrayList<String> lines = new ArrayList<>();
-        f = new File("savedTasks.txt"); // create a File for the given file path
         try {
-            s = new Scanner(f); // create a Scanner using the File as the source
+            s = new Scanner(file); // create a Scanner using the File as the source
             while (s.hasNextLine()) {
                 lines.add(s.nextLine());
             }
@@ -46,6 +46,4 @@ public class Storage {
             }
         }
     }
-
-    final private File f;
 }

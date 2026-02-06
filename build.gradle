@@ -31,6 +31,10 @@ test {
     }
 }
 
+checkstyle {
+    toolVersion = '11.0.0'
+}
+
 
 application {
     mainClass.set("duke.YajuSenpai")
