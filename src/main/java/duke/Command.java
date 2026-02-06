@@ -1,13 +1,17 @@
 package duke;
 
-import duke.Task.DeadlineTask;
-import duke.Task.EventTask;
-import duke.Task.TodoTask;
+import duke.senpaiexception.SenpaiException;
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+import duke.task.TodoTask;
 
 /**
  * Represents one user action.
  */
 public class Command {
+    /**
+     * Supported command types.
+     */
     public enum Type {
         E,
         T,
@@ -17,8 +21,13 @@ public class Command {
         bye,
         mark,
         unmark,
-        delete
+        delete,
+        err
     }
+
+    private String description;
+    private Type type;
+    private int idx;
 
     /**
      * Creates a command with text content.
@@ -42,39 +51,50 @@ public class Command {
         this.idx = idx;
     }
 
+    public Type getType() {
+        return type;
+    }
+
     /**
      * Executes the command on the task list.
      *
      * @param tasks Task list to operate on.
+     * @throws SenpaiException If an invalid command is encountered.
      */
-    public void execute(TaskList tasks) {
+    public String execute(TaskList tasks) throws SenpaiException {
+        String response;
         switch (type) {
-            case E -> {
-                tasks.addWithResponse(new EventTask(description));
-            }
-            case T -> {
-                tasks.addWithResponse(new TodoTask(description));
-            }
-            case D -> {
-                tasks.addWithResponse(new DeadlineTask(description));
-            }
-            case find -> {
-                tasks.find(description);
-            }
-            case list -> {
-                tasks.list();
-            }
-            case mark -> {
-                tasks.mark(idx);
-            }
-            case unmark -> {
-                tasks.unmark(idx);
-            }
-            case delete -> {
-                tasks.deleteTask(idx);
-            }
+        case E -> {
+            response = tasks.addWithResponse(new EventTask(description));
+        }
+        case T -> {
+            response = tasks.addWithResponse(new TodoTask(description));
+        }
+        case D -> {
+            response = tasks.addWithResponse(new DeadlineTask(description));
+        }
+        case find -> {
+            String[] keywords = description.split(" ");
+            response = tasks.find(keywords);
+        }
+        case list -> {
+            response = tasks.list();
+        }
+        case mark -> {
+            response = tasks.mark(idx);
+        }
+        case unmark -> {
+            response = tasks.unmark(idx);
+        }
+        case delete -> {
+            response = tasks.deleteTask(idx);
+        }
+        default -> {
+            throw new SenpaiException("Unknown command type.");
+        }
         }
         tasks.saveList();
+        return response;
     }
 
     /**
@@ -85,8 +105,4 @@ public class Command {
     public boolean isExit() {
         return type == Type.bye;
     }
-
-    private String description;
-    private Type type;
-    private int idx;
 }

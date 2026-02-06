@@ -1,6 +1,6 @@
 package duke;
 
-import duke.ResponseBlock.ResponseBlock;
+import duke.responseblock.ResponseBlock;
 
 /**
  * Prints messages to the user.
@@ -10,13 +10,19 @@ public class Ui {
 
     }
 
+    /**
+     * Prints the welcome message.
+     */
     public void showWelcome() {
         ResponseBlock greetings = new ResponseBlock("Hello! I'm Yaju Senpai.\nWhat can I do for you?");
-        greetings.Print();
+        greetings.print();
     }
 
-    public void showLoadingError() {
+    /**
+     * Prints the loading error message.
+     */
+    public String showLoadingError() {
         ResponseBlock loadingError = new ResponseBlock("Loading Error");
-        loadingError.Print();
+        return loadingError.print();
     }
 }
