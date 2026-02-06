@@ -1,12 +1,11 @@
 package duke;
 
-import java.time.format.DateTimeParseException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import duke.responseblock.ResponseBlock;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.Task;
@@ -70,9 +69,9 @@ public class TaskList {
      */
     public String addWithResponse(Task task) {
         addTask(task);
-//        ResponseBlock response = new ResponseBlock("Got it. I've added this task:\n"
-//                + task.getRep() + "\nNow you have " + getChatSize() + " tasks in the list.");
-//        response.print();
+        //        ResponseBlock response = new ResponseBlock("Got it. I've added this task:\n"
+        //                + task.getRep() + "\nNow you have " + getChatSize() + " tasks in the list.");
+        //        response.print();
         return "Got it. I've added this task:\n"
                 + task.getRep() + "\nNow you have " + getChatSize() + " tasks in the list.";
     }
@@ -110,9 +109,9 @@ public class TaskList {
     public String deleteTask(int idx) {
         String taskRep = tasks.get(idx - 1).getRep();
         tasks.remove(idx - 1);
-//        ResponseBlock response = new ResponseBlock("Deleted task successfully:\n"
-//                + taskRep + "\nNow you have " + getChatSize() + " tasks in the list.");
-//        response.print();
+        //        ResponseBlock response = new ResponseBlock("Deleted task successfully:\n"
+        //                + taskRep + "\nNow you have " + getChatSize() + " tasks in the list.");
+        //        response.print();
         return "Deleted task successfully:\n"
                 + taskRep + "\nNow you have " + getChatSize() + " tasks in the list.";
     }
@@ -160,8 +159,8 @@ public class TaskList {
      * Prints the list of tasks.
      */
     public String list() {
-//        ResponseBlock response = new ResponseBlock("Here are the tasks in your list:\n" + getAllTasks());
-//        response.print();
+        //        ResponseBlock response = new ResponseBlock("Here are the tasks in your list:\n" + getAllTasks());
+        //        response.print();
         return "Here are the tasks in your list:\n" + getAllTasks();
     }
 
@@ -171,9 +170,9 @@ public class TaskList {
      * @param keyword Keyword to search for.
      */
     public String find(String ...keyword) {
-//        ResponseBlock response = new ResponseBlock("Here are the matching tasks in your list:\n"
-//                + getMatchingTasks(keyword));
-//        response.print();
+        //        ResponseBlock response = new ResponseBlock("Here are the matching tasks in your list:\n"
+        //                + getMatchingTasks(keyword));
+        //        response.print();
 
         return "Here are the matching tasks in your list:\n"
                 + getMatchingTasks(keyword);
@@ -198,7 +197,7 @@ public class TaskList {
     /**
      * Get the string of matched tasks.
      *
-     * @param keyword Keyword to search for.
+     * @param keywords Keyword to search for.
      * @return String of matched tasks.
      */
     public String getMatchingTasks(String ...keywords) {

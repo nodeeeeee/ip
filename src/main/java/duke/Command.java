@@ -40,10 +40,6 @@ public class Command {
         this.type = type;
     }
 
-    public Type getType() {
-        return type;
-    }
-
     /**
      * Creates a command that uses 1-based index.
      *
@@ -53,6 +49,10 @@ public class Command {
     public Command(Type type, int idx) {
         this.type = type;
         this.idx = idx;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     /**

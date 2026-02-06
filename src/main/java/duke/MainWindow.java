@@ -42,7 +42,7 @@ public class MainWindow extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = duke.getResponse(input);
-        if(response == "--exit--") {
+        if (response == "--exit--") {
             javafx.application.Platform.exit();
         }
         String commandType = duke.getCommandType();

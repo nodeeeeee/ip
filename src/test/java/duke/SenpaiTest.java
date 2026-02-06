@@ -42,8 +42,8 @@ public class SenpaiTest {
      */
     @Test
     public void invalidDatetime() {
-        SenpaiException ex = assertThrows(SenpaiException.class,
-                () -> new DeadlineTask("submit report /by 1145/01/04"));
+        SenpaiException ex = assertThrows(SenpaiException.class, () -> new DeadlineTask(
+                "submit report /by 1145/01/04"));
         assertEquals("date time format should be yyyy-mm-dd", ex.getMessage());
     }
 

@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 import duke.senpaiexception.SenpaiException;
 
 /**
@@ -31,24 +29,24 @@ public class YajuSenpai {
     /**
      * Run the main input loop.
      */
-//    public void run() {
-//        Scanner scanner = new Scanner(System.in);
-//        ui.showWelcome();
-//        while (scanner.hasNextLine()) {
-//            String input = scanner.nextLine();
-//            try {
-//                Command c = Parser.parse(input);
-//                if (c.isExit()) {
-//                    break;
-//            }
-//            c.execute(tasks);
-//
-//            } catch (SenpaiException e) {
-//                e.getResponse().print();
-//            }
-//
-//        }
-//    }
+    //    public void run() {
+    //        Scanner scanner = new Scanner(System.in);
+    //        ui.showWelcome();
+    //        while (scanner.hasNextLine()) {
+    //            String input = scanner.nextLine();
+    //            try {
+    //                Command c = Parser.parse(input);
+    //                if (c.isExit()) {
+    //                    break;
+    //            }
+    //            c.execute(tasks);
+    //
+    //            } catch (SenpaiException e) {
+    //                e.getResponse().print();
+    //            }
+    //
+    //        }
+    //    }
 
     public String getResponse(String input) {
         try {
@@ -69,7 +67,7 @@ public class YajuSenpai {
     }
 
 
-//    public static void main(String[] args) {
-//        new YajuSenpai("data/tasks.txt").run();
-//    }
+    //    public static void main(String[] args) {
+    //        new YajuSenpai("data/tasks.txt").run();
+    //    }
 }
