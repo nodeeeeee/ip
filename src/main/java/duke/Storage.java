@@ -31,6 +31,7 @@ public class Storage {
     public String[] load() throws SenpaiException {
         Scanner s = null;
         ArrayList<String> lines = new ArrayList<>();
+        assert file.canRead() : "file should be readable.";
         try {
             s = new Scanner(file); // create a Scanner using the File as the source
             while (s.hasNextLine()) {
