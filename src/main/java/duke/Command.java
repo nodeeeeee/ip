@@ -62,6 +62,10 @@ public class Command {
      * @throws SenpaiException If an invalid command is encountered.
      */
     public String execute(TaskList tasks) throws SenpaiException {
+        assert tasks != null : "tasks must not be null";
+        if (type == Type.E || type == Type.T || type == Type.D || type == Type.find) {
+            assert description != null : "description must not be null for content commands";
+        }
         String response;
         switch (type) {
         case E -> {

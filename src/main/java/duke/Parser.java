@@ -14,6 +14,7 @@ public class Parser {
      * @throws SenpaiException If the input is not valid.
      */
     static Command parse(String input) {
+        assert input != null : "input must not be null";
         String[] inputWords = input.split(" ", 2);
         if (input.equals("list")) {
             return new Command("list", Command.Type.list);
