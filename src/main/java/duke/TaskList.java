@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
@@ -190,14 +192,9 @@ public class TaskList {
      * @return String of tasks.
      */
     public String getAllTasks() {
-        StringBuilder ret = new StringBuilder();
-        for (int i = 1; i <= tasks.size(); i++) {
-            ret.append(i).append(". ").append(tasks.get(i - 1).getRep());
-            if (i != tasks.size()) {
-                ret.append("\n");
-            }
-        }
-        return ret.toString();
+        return IntStream.range(0, tasks.size())
+                .mapToObj(i -> (i + 1) + ". " + tasks.get(i).getRep())
+                .collect(Collectors.joining("\n"));
     }
 
     /**
@@ -210,22 +207,18 @@ public class TaskList {
         if (keywords == null || keywords.length == 0) {
             return "";
         }
-        StringBuilder ret = new StringBuilder();
-        boolean first = true;
-        for (int i = 1; i <= tasks.size(); i++) {
-            Task task = tasks.get(i - 1);
-            for (String keyword : keywords) {
-                if (task.getTaskName().contains(keyword)) {
-                    if (!first) {
-                        ret.append("\n");
+        return IntStream.range(0, tasks.size())
+                .filter(i -> {
+                    Task task = tasks.get(i);
+                    for (String keyword : keywords) {
+                        if (task.getTaskName().contains(keyword)) {
+                            return true;
+                        }
                     }
-                    ret.append(i).append(". ").append(task.getRep());
-                    first = false;
-                    break;
-                }
-            }
-        }
-        return ret.toString();
+                    return false;
+                })
+                .mapToObj(i -> (i + 1) + ". " + tasks.get(i).getRep())
+                .collect(Collectors.joining("\n"));
     }
 
     /**
@@ -234,14 +227,9 @@ public class TaskList {
      * @return formatted string.
      */
     public String formatSave() {
-        StringBuilder ret = new StringBuilder();
-        for (int i = 1; i <= tasks.size(); i++) {
-            ret.append(tasks.get(i - 1).getRep());
-            if (i != tasks.size()) {
-                ret.append("\n");
-            }
-        }
-        return ret.toString();
+        return tasks.stream()
+                .map(Task::getRep)
+                .collect(Collectors.joining("\n"));
     }
 
 
