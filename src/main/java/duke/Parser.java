@@ -13,7 +13,7 @@ public class Parser {
      * @return Parsed command.
      * @throws SenpaiException If the input is not valid.
      */
-    final private static String REQUIRE_INTEGER = "あのさぁ, should follow an integer";
+    private static final String REQUIRE_INTEGER = "あのさぁ, should follow an integer";
     static Command parse(String input) {
         assert input != null : "input must not be null";
         String[] inputWords = input.split(" ", 2);
