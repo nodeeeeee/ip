@@ -37,8 +37,7 @@ public class Storage {
             while (s.hasNextLine()) {
                 lines.add(s.nextLine());
             }
-            String[] ret = lines.toArray(new String[0]);
-            return ret;
+            return lines.toArray(new String[0]);
         } catch (FileNotFoundException e) {
             throw new SenpaiException("File Not Found");
         } finally {

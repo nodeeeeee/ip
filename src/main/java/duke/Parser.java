@@ -13,9 +13,11 @@ public class Parser {
      * @return Parsed command.
      * @throws SenpaiException If the input is not valid.
      */
+    final private static String REQUIRE_INTEGER = "あのさぁ, should follow an integer";
     static Command parse(String input) {
         assert input != null : "input must not be null";
         String[] inputWords = input.split(" ", 2);
+
         if (input.equals("list")) {
             return new Command("list", Command.Type.list);
         } else if (inputWords[0].equals("mark")) {
@@ -23,21 +25,21 @@ public class Parser {
                 int index = Integer.parseInt(inputWords[1]);
                 return new Command(Command.Type.mark, index);
             } catch (NumberFormatException e) {
-                throw new SenpaiException("あのさぁ, should follow an integer");
+                throw new SenpaiException(REQUIRE_INTEGER);
             }
         } else if (inputWords[0].equals("unmark")) {
             try {
                 int index = Integer.parseInt(inputWords[1]);
                 return new Command(Command.Type.unmark, index);
             } catch (NumberFormatException e) {
-                throw new SenpaiException("あのさぁ, should follow an integer");
+                throw new SenpaiException(REQUIRE_INTEGER);
             }
         } else if (inputWords[0].equals("delete")) {
             try {
                 int index = Integer.parseInt(inputWords[1]);
                 return new Command(Command.Type.delete, index);
             } catch (NumberFormatException e) {
-                throw new SenpaiException("あのさぁ, should follow an integer");
+                throw new SenpaiException(REQUIRE_INTEGER);
             }
         } else if (inputWords[0].equals("todo")) {
             if (inputWords.length == 1) {
