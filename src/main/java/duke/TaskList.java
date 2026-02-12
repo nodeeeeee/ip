@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+import duke.senpaiexception.SenpaiException;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.Task;
@@ -37,12 +38,18 @@ public class TaskList {
                     addWithoutResponse(new DeadlineTask(taskComponents[2] + " " + taskComponents[3]));
                 } else if (taskComponents[0].equals("E")) {
                     addWithoutResponse(new EventTask(taskComponents[2] + " " + taskComponents[3]));
+                } else {
+                    throw new SenpaiException("loading error...");
                 }
                 if (taskComponents[1].equals("1")) {
                     mark(idx);
                 }
                 idx++;
             } catch (DateTimeParseException e) {
+                System.out.println("Date time error");
+                continue;
+            } catch (SenpaiException e) {
+                System.out.println(e.getResponse());
                 continue;
             }
         }
