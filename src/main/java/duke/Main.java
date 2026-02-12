@@ -13,7 +13,7 @@ import javafx.stage.Stage;
  */
 public class Main extends Application {
 
-    private YajuSenpai duke = new YajuSenpai("savedTasks.txt");
+    private final YajuSenpai duke = new YajuSenpai("savedTasks.txt");
 
     @Override
     public void start(Stage stage) {

@@ -31,13 +31,13 @@ public class Storage {
     public String[] load() throws SenpaiException {
         Scanner s = null;
         ArrayList<String> lines = new ArrayList<>();
+
         try {
             s = new Scanner(file); // create a Scanner using the File as the source
             while (s.hasNextLine()) {
                 lines.add(s.nextLine());
             }
-            String[] ret = lines.toArray(new String[0]);
-            return ret;
+            return lines.toArray(new String[0]);
         } catch (FileNotFoundException e) {
             throw new SenpaiException("File Not Found");
         } finally {

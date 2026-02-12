@@ -66,6 +66,7 @@ public class Command {
         if (type == Type.E || type == Type.T || type == Type.D || type == Type.find) {
             assert description != null : "description must not be null for content commands";
         }
+
         String response;
         switch (type) {
         case E -> {

@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.senpaiexception.SenpaiException;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.Task;
@@ -35,12 +36,18 @@ public class TaskList {
                     addWithoutResponse(new DeadlineTask(taskComponents[2] + " " + taskComponents[3]));
                 } else if (taskComponents[0].equals("E")) {
                     addWithoutResponse(new EventTask(taskComponents[2] + " " + taskComponents[3]));
+                } else {
+                    throw new SenpaiException("loading error...");
                 }
                 if (taskComponents[1].equals("1")) {
                     mark(idx);
                 }
                 idx++;
             } catch (DateTimeParseException e) {
+                System.out.println("Date time error");
+                continue;
+            } catch (SenpaiException e) {
+                System.out.println(e.getResponse());
                 continue;
             }
         }
@@ -210,6 +217,7 @@ public class TaskList {
         if (keywords == null || keywords.length == 0) {
             return "";
         }
+
         StringBuilder ret = new StringBuilder();
         boolean first = true;
         for (int i = 1; i <= tasks.size(); i++) {

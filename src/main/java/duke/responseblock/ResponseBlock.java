@@ -9,7 +9,7 @@ public class ResponseBlock {
     private final String response;
 
     /**
-     * Create a response block from a message.
+     * Creates a response block from a message.
      *
      * @param str Message to show.
      */
