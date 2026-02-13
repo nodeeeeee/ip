@@ -1,9 +1,12 @@
 package duke;
 
-import duke.senpaiexception.SenpaiException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.senpaiexception.SenpaiException;
+
+
 
 /**
  * Turns string input into a Command.
