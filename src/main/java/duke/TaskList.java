@@ -2,8 +2,14 @@ package duke;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -239,5 +245,110 @@ public class TaskList {
                 .collect(Collectors.joining("\n"));
     }
 
+    /**
+     * Finds the nearest day with a free slot of at least the requested minutes.
+     *
+     * @param requiredMinutes Required free minutes (1-1440).
+     * @param currentTime User-provided current time.
+     * @return Response string.
+     */
+    public String findNearestFreeDay(int requiredMinutes, LocalDateTime currentTime) {
+        if (requiredMinutes <= 0 || requiredMinutes > 1440) {
+            throw new SenpaiException("Free duration must be between 1 and 1440 minutes.");
+        }
+        if (currentTime == null) {
+            throw new SenpaiException("Must specify current time!");
+        }
+        LocalDate date = currentTime.toLocalDate();
+        LocalDate end = date.plusDays(365);
+        while (!date.isAfter(end)) {
+            int earliestStart = date.equals(currentTime.toLocalDate())
+                    ? currentTime.getHour() * 60 + currentTime.getMinute()
+                    : 0;
+            int startMinute = findFreeSlotStart(date, requiredMinutes, earliestStart);
+            if (startMinute >= 0 && startMinute <= 1439) {
+                String formattedDate = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+                String timeStr = LocalTime.of(startMinute / 60, startMinute % 60)
+                        .format(DateTimeFormatter.ofPattern("HH:mm"));
+                return "Nearest day with at least " + formatDuration(requiredMinutes)
+                        + " free slot: " + formattedDate + " starting at " + timeStr;
+            }
+            date = date.plusDays(1);
+        }
+        return "No free slot found within the next 365 days.";
+    }
+
+    /**
+     * Finds the earliest start minute within the given day that can fit a free slot.
+     *
+     * <p>Busy intervals are derived from EventTask timings that overlap the day and
+     * DeadlineTask occurrences on the same date (treated as blocking the entire day).
+     *
+     * @param date Day to search.
+     * @param requiredMinutes Required free minutes.
+     * @param earliestStart Earliest allowed start minute from day start (0-1439).
+     * @return Start minute from day start if a slot is available, or -1 if none fits.
+     */
+    private int findFreeSlotStart(LocalDate date, int requiredMinutes, int earliestStart) {
+        LocalDateTime dayStart = date.atStartOfDay();
+        LocalDateTime dayEnd = date.atTime(23, 59);
+        List<Interval> intervals = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task instanceof EventTask event) {
+                LocalDateTime from = event.getFrom();
+                LocalDateTime to = event.getTo();
+                if (to.isBefore(dayStart) || from.isAfter(dayEnd)) {
+                    continue;
+                }
+                LocalDateTime busyStart = from.isAfter(dayStart) ? from : dayStart;
+                LocalDateTime busyEnd = to.isBefore(dayEnd) ? to : dayEnd;
+                int startMin = (int) Duration.between(dayStart, busyStart).toMinutes();
+                int endMin = (int) Duration.between(dayStart, busyEnd).toMinutes();
+                int endExclusive = Math.min(1440, endMin + 1);
+                intervals.add(new Interval(startMin, endExclusive));
+            } else if (task instanceof DeadlineTask ddl) {
+                if (date.isEqual(ddl.getDue())) {
+                    intervals.add(new Interval(0, 1440));
+                }
+            }
+        }
+        if (intervals.isEmpty()) {
+            return 0;
+        }
+        intervals.sort(Comparator.comparingInt(i -> i.start));
+        int current = Math.max(0, earliestStart);
+        if (current >= 1440) {
+            return -1;
+        }
+        for (Interval interval : intervals) {
+            if (interval.start - current >= requiredMinutes) {
+                return current;
+            }
+            current = Math.max(current, interval.end);
+            if (current >= 1440) {
+                return -1;
+            }
+        }
+        return (1440 - current >= requiredMinutes) ? current : -1;
+    }
+
+    private String formatDuration(int minutes) {
+        int hours = minutes / 60;
+        int mins = minutes % 60;
+        if (mins == 0) {
+            return hours + " hour" + (hours == 1 ? "" : "s");
+        }
+        return hours + "h " + mins + "m";
+    }
+
+    private static class Interval {
+        private final int start;
+        private final int end;
+
+        Interval(int start, int end) {
+            this.start = start;
+            this.end = end;
+        }
+    }
 
 }

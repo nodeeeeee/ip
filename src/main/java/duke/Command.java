@@ -4,6 +4,7 @@ import duke.senpaiexception.SenpaiException;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.TodoTask;
+import java.time.LocalDateTime;
 
 /**
  * Represents one user action.
@@ -22,12 +23,15 @@ public class Command {
         mark,
         unmark,
         delete,
+        free,
         err
     }
 
     private String description;
     private Type type;
     private int idx;
+    private LocalDateTime time;
+    private int minutes;
 
     /**
      * Creates a command with text content.
@@ -49,6 +53,19 @@ public class Command {
     public Command(Type type, int idx) {
         this.type = type;
         this.idx = idx;
+    }
+
+    /**
+     * Creates a command with a time argument.
+     *
+     * @param type Command type.
+     * @param minutes Duration in minutes.
+     * @param time Start time.
+     */
+    public Command(Type type, int minutes, LocalDateTime time) {
+        this.type = type;
+        this.minutes = minutes;
+        this.time = time;
     }
 
     public Type getType() {
@@ -93,6 +110,9 @@ public class Command {
         }
         case delete -> {
             response = tasks.deleteTask(idx);
+        }
+        case free -> {
+            response = tasks.findNearestFreeDay(minutes, time);
         }
         default -> {
             throw new SenpaiException("Unknown command type.");
