@@ -27,6 +27,9 @@ public class Parser {
         if (input.equals("list")) {
             return new Command("list", Command.Type.list);
         } else if (inputWords[0].equals("mark")) {
+            if (inputWords.length == 1) {
+                throw new SenpaiException("OOPS!!! The index for mark cannot be empty.");
+            }
             try {
                 int index = Integer.parseInt(inputWords[1]);
                 return new Command(Command.Type.mark, index);
@@ -34,6 +37,9 @@ public class Parser {
                 throw new SenpaiException(REQUIRE_INTEGER);
             }
         } else if (inputWords[0].equals("unmark")) {
+            if (inputWords.length == 1) {
+                throw new SenpaiException("OOPS!!! The index for unmark cannot be empty.");
+            }
             try {
                 int index = Integer.parseInt(inputWords[1]);
                 return new Command(Command.Type.unmark, index);
@@ -41,6 +47,9 @@ public class Parser {
                 throw new SenpaiException(REQUIRE_INTEGER);
             }
         } else if (inputWords[0].equals("delete")) {
+            if (inputWords.length == 1) {
+                throw new SenpaiException("OOPS!!! The index for delete cannot be empty.");
+            }
             try {
                 int index = Integer.parseInt(inputWords[1]);
                 return new Command(Command.Type.delete, index);
@@ -83,12 +92,18 @@ public class Parser {
                     String[] durationParts = duration.split(":", 2);
                     int hours = Integer.parseInt(durationParts[0]);
                     int minutes = Integer.parseInt(durationParts[1]);
+                    if (hours < 0) {
+                        throw new SenpaiException("Hours must be non-negative.");
+                    }
                     if (minutes < 0 || minutes > 59) {
                         throw new SenpaiException("Minutes must be between 00 and 59.");
                     }
                     return new Command(Command.Type.free, hours * 60 + minutes, currentTime);
                 } else {
                     int hours = Integer.parseInt(duration);
+                    if (hours <= 0) {
+                        throw new SenpaiException("Duration should be greater than 0.");
+                    }
                     return new Command(Command.Type.free, hours * 60, currentTime);
                 }
             } catch (NumberFormatException e) {

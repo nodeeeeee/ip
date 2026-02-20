@@ -126,7 +126,9 @@ public class TaskList {
      * @param idx 1-based index of task to delete.
      */
     public String deleteTask(int idx) {
-        assert idx >= 1 && idx <= tasks.size() : "index out of range";
+        if (idx < 1 || idx > tasks.size()) {
+            throw new SenpaiException("OOPS!!! The task index is out of range.");
+        }
         String taskRep = tasks.get(idx - 1).getRep();
         tasks.remove(idx - 1);
         //        ResponseBlock response = new ResponseBlock("Deleted task successfully:\n"
@@ -143,7 +145,9 @@ public class TaskList {
      * @return Task to string.
      */
     public String getTask(int index) {
-        assert index >= 1 && index <= tasks.size() : "index out of range";
+        if (index < 1 || index > tasks.size()) {
+            throw new SenpaiException("OOPS!!! The task index is out of range.");
+        }
         return tasks.get(index - 1).getRep();
     }
 
@@ -153,7 +157,9 @@ public class TaskList {
      * @param index 1-based index of task to mark.
      */
     public String mark(int index) {
-        assert index >= 1 && index <= tasks.size() : "index out of range";
+        if (index < 1 || index > tasks.size()) {
+            throw new SenpaiException("OOPS!!! The task index is out of range.");
+        }
         tasks.get(index - 1).mark();
         return "marked";
     }
@@ -164,7 +170,9 @@ public class TaskList {
      * @param index 1-based index of task to unmark.
      */
     public String unmark(int index) {
-        assert index >= 1 && index <= tasks.size() : "index out of range";
+        if (index < 1 || index > tasks.size()) {
+            throw new SenpaiException("OOPS!!! The task index is out of range.");
+        }
         tasks.get(index - 1).unmark();
         return "unmarked";
     }
