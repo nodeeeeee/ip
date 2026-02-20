@@ -4,3 +4,4 @@ used AI in:
 3) Adding personality
 4) Error handling
 5) Development of a few functions
+6) Generate README.md

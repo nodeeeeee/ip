@@ -1,30 +1,83 @@
-# duke.YajuSenpai User Guide
+# YajuSenpai User Guide
 
-// Update the title above to match the actual product name
+YajuSenpai is a lightweight task manager with a chat-style UI. Use simple commands to add, list, and manage tasks.
 
-// Product screenshot goes here
+## Quick start
 
-// Product intro goes here
+1. Run the app.
+1. Type a command and press Enter or click `Send`.
 
-## Adding deadlines
+## Command format
 
-// Describe the action and its outcome.
 
-// Give examples of usage
+- Dates: `yyyy-MM-dd` or `MMM dd yyyy`.
+- Times: `HH:mm` (24-hour).
+- Indexes are 1-based from `list`.
 
-Example: `keyword (optional arguments)`
+## Commands
 
-// A description of the expected outcome goes here
+### Add a todo
 
+`todo DESCRIPTION`
+
+Example:
+
+```text
+todo read chapter 3
 ```
-expected output
+
+### Add a deadline
+
+`deadline DESCRIPTION /by DATE`
+
+Example:
+
+```text
+deadline submit report /by 2026-03-01
 ```
 
-## Feature ABC
+### Add an event
 
-// Feature details
+`event DESCRIPTION /from START /to END`
 
+Examples:
 
-## Feature XYZ
+```text
+event project sprint /from 2026-03-01 /to 2026-03-05
+event meeting /from 2026-03-01 14:00 /to 2026-03-01 16:00
+```
 
-// Feature details
+### List tasks
+
+`list`
+
+### Mark or unmark
+
+`mark INDEX`  
+`unmark INDEX`
+
+### Delete
+
+`delete INDEX`
+
+### Find
+
+`find KEYWORDS`
+
+### Find nearest free slot
+
+`free DURATION /at CURRENT_TIME`
+
+Example:
+
+```text
+free 2:30 /at 2026-03-01 09:00
+```
+
+### Exit
+
+`bye`
+
+## Data storage
+
+Tasks are saved to `savedTasks.txt` in the project root.
