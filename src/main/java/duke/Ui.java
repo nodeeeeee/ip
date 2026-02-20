@@ -6,6 +6,9 @@ import duke.responseblock.ResponseBlock;
  * Prints messages to the user.
  */
 public class Ui {
+    /**
+     * Creates a UI helper.
+     */
     public Ui() {
 
     }

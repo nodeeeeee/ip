@@ -15,6 +15,11 @@ public class Main extends Application {
 
     private final YajuSenpai duke = new YajuSenpai("savedTasks.txt");
 
+    /**
+     * Starts the JavaFX application and shows the main window.
+     *
+     * @param stage Primary stage provided by JavaFX.
+     */
     @Override
     public void start(Stage stage) {
         try {

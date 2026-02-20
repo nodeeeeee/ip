@@ -63,10 +63,20 @@ public class EventTask extends Task {
                 + " /to " + to.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
     }
 
+    /**
+     * Returns the event start time.
+     *
+     * @return Start time.
+     */
     public LocalDateTime getFrom() {
         return from;
     }
 
+    /**
+     * Returns the event end time.
+     *
+     * @return End time.
+     */
     public LocalDateTime getTo() {
         return to;
     }

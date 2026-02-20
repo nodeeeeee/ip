@@ -50,6 +50,11 @@ public class DeadlineTask extends Task {
                 + " | /by " + due.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 
+    /**
+     * Returns the due date.
+     *
+     * @return Due date.
+     */
     public LocalDate getDue() {
         return due;
     }

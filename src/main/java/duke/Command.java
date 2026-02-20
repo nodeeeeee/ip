@@ -71,6 +71,11 @@ public class Command {
         this.time = time;
     }
 
+    /**
+     * Returns the command type.
+     *
+     * @return Command type.
+     */
     public Type getType() {
         return type;
     }

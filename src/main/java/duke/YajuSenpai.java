@@ -48,6 +48,12 @@ public class YajuSenpai {
     //        }
     //    }
 
+    /**
+     * Parses the input and returns the response string.
+     *
+     * @param input User input.
+     * @return Response text or exit sentinel.
+     */
     public String getResponse(String input) {
         try {
             Command c = Parser.parse(input);
@@ -62,6 +68,11 @@ public class YajuSenpai {
         }
     }
 
+    /**
+     * Returns the last command type processed.
+     *
+     * @return Command type string.
+     */
     public String getCommandType() {
         return commandType;
     }

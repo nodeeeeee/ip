@@ -61,7 +61,9 @@ public class TaskList {
         }
     }
 
-
+    /**
+     * Creates an empty task list.
+     */
     public TaskList() {
         tasks = new ArrayList<>();
     }

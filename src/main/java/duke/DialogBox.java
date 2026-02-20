@@ -48,10 +48,25 @@ public class DialogBox extends HBox {
         dialog.getStyleClass().add("reply-label");
     }
 
+    /**
+     * Creates a dialog box for user input.
+     *
+     * @param text Text to display.
+     * @param img Avatar image.
+     * @return User dialog box.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         return new DialogBox(text, img);
     }
 
+    /**
+     * Creates a dialog box for YajuSenpai's response.
+     *
+     * @param text Response text.
+     * @param img Avatar image.
+     * @param commandType Command type to style the response.
+     * @return Duke dialog box.
+     */
     public static DialogBox getDukeDialog(String text, Image img, String commandType) {
         var db = new DialogBox(text, img);
         db.flip();

@@ -40,9 +40,19 @@ public abstract class Task {
         return isDone ? "1" : "0";
     }
 
+    /**
+     * Returns the task description.
+     *
+     * @return Task name.
+     */
     public String getTaskName() {
         return taskName;
     }
 
+    /**
+     * Returns the formatted representation for storage and display.
+     *
+     * @return Formatted task string.
+     */
     public abstract String getRep();
 }
