@@ -30,28 +30,6 @@ public class YajuSenpai {
     }
 
     /**
-     * Run the main input loop.
-     */
-    //    public void run() {
-    //        Scanner scanner = new Scanner(System.in);
-    //        ui.showWelcome();
-    //        while (scanner.hasNextLine()) {
-    //            String input = scanner.nextLine();
-    //            try {
-    //                Command c = Parser.parse(input);
-    //                if (c.isExit()) {
-    //                    break;
-    //            }
-    //            c.execute(tasks);
-    //
-    //            } catch (SenpaiException e) {
-    //                e.getResponse().print();
-    //            }
-    //
-    //        }
-    //    }
-
-    /**
      * Parses the input and returns the response string.
      *
      * @param input User input.
@@ -87,44 +65,44 @@ public class YajuSenpai {
 
     private String pickPrefix(String type, boolean isError) {
         String[] errorPrefixes = new String[] {
-                "YajuSenpai: Oi oi, slow down. ",
-                "YajuSenpai: Hmm, that doesn't look right. ",
-                "YajuSenpai: Try that again, onegai. "
+            "YajuSenpai: Oi oi, slow down. ",
+            "YajuSenpai: Hmm, that doesn't look right. ",
+            "YajuSenpai: Try that again, onegai. "
         };
         String[] addPrefixes = new String[] {
-                "YajuSenpai: Noted. ",
-                "YajuSenpai: Ryoukai. ",
-                "YajuSenpai: Done and dusted. "
+            "YajuSenpai: Noted. ",
+            "YajuSenpai: Ryoukai. ",
+            "YajuSenpai: Done and dusted. "
         };
         String[] markPrefixes = new String[] {
-                "YajuSenpai: Nice work. ",
-                "YajuSenpai: Good job. ",
-                "YajuSenpai: Sasuga. "
+            "YajuSenpai: Nice work. ",
+            "YajuSenpai: Good job. ",
+            "YajuSenpai: Sasuga. "
         };
         String[] deletePrefixes = new String[] {
-                "YajuSenpai: Clean slate. ",
-                "YajuSenpai: Poof, gone. ",
-                "YajuSenpai: Vanished. "
+            "YajuSenpai: Clean slate. ",
+            "YajuSenpai: Poof, gone. ",
+            "YajuSenpai: Vanished. "
         };
         String[] findPrefixes = new String[] {
-                "YajuSenpai: Look what I found. ",
-                "YajuSenpai: Here you go. ",
-                "YajuSenpai: I sniffed these out. "
+            "YajuSenpai: Look what I found. ",
+            "YajuSenpai: Here you go. ",
+            "YajuSenpai: I sniffed these out. "
         };
         String[] listPrefixes = new String[] {
-                "YajuSenpai: Your lineup, boss. ",
-                "YajuSenpai: Task parade incoming. ",
-                "YajuSenpai: The list, as you wish. "
+            "YajuSenpai: Your lineup, boss. ",
+            "YajuSenpai: Task parade incoming. ",
+            "YajuSenpai: The list, as you wish. "
         };
         String[] freePrefixes = new String[] {
-                "YajuSenpai: Scanning for gaps. ",
-                "YajuSenpai: Let me check your schedule. ",
-                "YajuSenpai: Free time hunt, go. "
+            "YajuSenpai: Scanning for gaps. ",
+            "YajuSenpai: Let me check your schedule. ",
+            "YajuSenpai: Free time hunt, go. "
         };
         String[] neutralPrefixes = new String[] {
-                "YajuSenpai: ",
-                "YajuSenpai: Roger. ",
-                "YajuSenpai: Mm-hmm. "
+            "YajuSenpai: ",
+            "YajuSenpai: Roger. ",
+            "YajuSenpai: Mm-hmm. "
         };
 
         if (isError) {
@@ -150,9 +128,4 @@ public class YajuSenpai {
         }
         return neutralPrefixes[rng.nextInt(neutralPrefixes.length)];
     }
-
-
-    //    public static void main(String[] args) {
-    //        new YajuSenpai("data/tasks.txt").run();
-    //    }
 }
